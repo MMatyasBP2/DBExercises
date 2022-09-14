@@ -1,9 +1,5 @@
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.io.FileReader;
+import java.io.*;
+
 
 public class Repository implements Serializable {
 
@@ -90,17 +86,27 @@ public class Repository implements Serializable {
 
     public static void reading(String fileName) throws IOException
     {
-        String sor;
+        Repository repo;
+
         try {
-            BufferedReader br = new BufferedReader(new FileReader(fileName));
-            while ( (sor = br.readLine()) != null) {
-            System.out.println(sor);
+            File fn = new File(fileName);
+            if(fn.exists()) {
+                ObjectInputStream output = new ObjectInputStream(
+                  new FileInputStream(fileName)  
+                );
+                try {
+                    while (true) {
+                        repo = (Repository)output.readObject();
+                        System.out.println(repo);
+                    }
+                } catch (EOFException ee) {
+                    repo = null;
+                }
+                output.close();
+            }
+        } catch (Exception e) {
+           e.printStackTrace();
         }
-            br.close();
-        } catch (Exception ee){
-            ee.printStackTrace();
-        }
-         
     }
 
     public static void adding(String fileName, Repository addingRecord)
