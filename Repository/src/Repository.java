@@ -1,5 +1,8 @@
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.ObjectOutputStream;
+import java.io.RandomAccessFile;
 import java.io.Serializable;
 
 public class Repository implements Serializable {
@@ -64,7 +67,7 @@ public class Repository implements Serializable {
         this.products = products;
     }
 
-    public void storing(Repository repos[])
+    public static void storing(Repository repos[])
     {
         try {
 
@@ -85,5 +88,39 @@ public class Repository implements Serializable {
         } 
     }
 
-    
+    public static void reading(String fileName)
+    {
+        String line;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fileName));
+            while((line = br.readLine()) != null)
+            {
+                System.out.println(line.toUpperCase());
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }        
+    }
+
+    public static void adding(String fileName, Repository addingRecord)
+    {
+        try {
+            RandomAccessFile raf = new RandomAccessFile(fileName, "wa");
+            raf.seek(raf.length());
+            raf.writeBytes(addingRecord.building);
+            raf.writeInt(addingRecord.line);
+            raf.writeInt(addingRecord.column);
+            raf.writeInt(addingRecord.floor);
+            raf.writeBytes(addingRecord.products.toString());
+            raf.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleting(String fileName, Repository deletingRecord)
+    {
+
+    }
 }
