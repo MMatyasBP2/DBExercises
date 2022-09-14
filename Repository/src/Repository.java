@@ -1,9 +1,9 @@
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
-import java.io.FileReader;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.RandomAccessFile;
 import java.io.Serializable;
+import java.io.FileReader;
 
 public class Repository implements Serializable {
 
@@ -88,35 +88,24 @@ public class Repository implements Serializable {
         } 
     }
 
-    public static void reading(String fileName)
+    public static void reading(String fileName) throws IOException
     {
-        String line;
+        String sor;
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
-            while((line = br.readLine()) != null)
-            {
-                System.out.println(line.toUpperCase());
-            }
+            while ( (sor = br.readLine()) != null) {
+            System.out.println(sor);
+        }
             br.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }        
+        } catch (Exception ee){
+            ee.printStackTrace();
+        }
+         
     }
 
     public static void adding(String fileName, Repository addingRecord)
     {
-        try {
-            RandomAccessFile raf = new RandomAccessFile(fileName, "wa");
-            raf.seek(raf.length());
-            raf.writeBytes(addingRecord.building);
-            raf.writeInt(addingRecord.line);
-            raf.writeInt(addingRecord.column);
-            raf.writeInt(addingRecord.floor);
-            raf.writeBytes(addingRecord.products.toString());
-            raf.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     public static void deleting(String fileName, Repository deletingRecord)

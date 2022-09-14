@@ -35,5 +35,5 @@ public class Product implements Serializable {
 
     public void setCount(int count) {
         this.count = count;
-    }    
+    }
 }

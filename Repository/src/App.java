@@ -1,7 +1,9 @@
 public class App {
+    
+    private static final String FILE = "REK.DAT";
     public static void main(String[] args) throws Exception {
 
-        Repository[] repos = {new Repository("Csavarraktár", 
+        Repository[] repos = {new Repository("Csavarraktar", 
                                             3, 
                                             2, 
                                             1, 
@@ -14,17 +16,17 @@ public class App {
                                     02,
                                     "Csillagcsavar", 
                                     10)}),
-                                new Repository("Gyümölcsraktár", 
+                                new Repository("Gyumolcsraktar", 
                                                 13, 
                                               80, 
                                                0, 
                                 new Product[]{(
                                 new Product(
                                     01,
-                                    "Málna",
+                                    "Malna",
                                     20))})};        
 
         Repository.storing(repos);
-        Repository.reading("REK.DAT");
+        Repository.reading(FILE);
     }
 }
