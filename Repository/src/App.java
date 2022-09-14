@@ -7,9 +7,11 @@ public class App {
                                             1, 
                               new Product[]{
                                 new Product(
+                                    01,
                                     "Anyacsavar", 
                                     12), 
                                 new Product(
+                                    02,
                                     "Csillagcsavar", 
                                     10)}),
                                 new Repository("Gyümölcsraktár", 
@@ -18,6 +20,7 @@ public class App {
                                                0, 
                                 new Product[]{(
                                 new Product(
+                                    01,
                                     "Málna",
                                     20))})};        
 
