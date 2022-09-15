@@ -102,4 +102,8 @@ public class Repository implements Serializable {
 		raFile.write(data.getBytes());
 		raFile.close();
 	}
+
+    public static void deleteData() {
+        
+    }
 }
