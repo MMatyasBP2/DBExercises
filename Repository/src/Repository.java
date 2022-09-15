@@ -17,7 +17,16 @@ public class Repository implements Serializable {
         this.line = line;
         this.column = column;
         this.floor = floor;
-        this.products = products;
+
+        try {
+            if(products.length < 10) {
+                this.products = products;
+            } else {
+                throw new ProductFullException();
+            }
+        } catch (ProductFullException e) {
+            e.getMessage();
+        }
     }
 
     public static long getSerialversionuid() {
