@@ -19,7 +19,7 @@ public class Repository implements Serializable {
         this.floor = floor;
 
         try {
-            if(products.length < 10) {
+            if(products.length <= 10) {
                 this.products = products;
             } else {
                 throw new ProductFullException();
