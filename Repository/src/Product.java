@@ -36,4 +36,9 @@ public class Product implements Serializable {
     public void setCount(int count) {
         this.count = count;
     }
+
+    @Override
+    public String toString() {
+        return "Product [Id=" + id + " ProductName=" + productName + " Count=" + count + "]";
+    }
 }

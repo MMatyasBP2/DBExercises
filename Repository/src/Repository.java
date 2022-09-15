@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Repository implements Serializable {
@@ -63,59 +65,35 @@ public class Repository implements Serializable {
         this.products = products;
     }
 
-    public static void storing(Repository repos[])
-    {
-        try {
-
-            ObjectOutputStream output = new ObjectOutputStream(
-                new FileOutputStream("REK.DAT")
-            );
-
-            for (Repository repository : repos) {
-                if(repos.length != 10)
-                    output.writeObject(repository);
-                else
-                    break;
-            }
-
-            output.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } 
+    @Override
+    public String toString() {
+        return "Repository [Building=" + building + " Column=" + column + " Floor=" + floor + " Line=" + line
+                + ",\nProducts=" + Arrays.toString(products) + "]";
     }
 
-    public static void reading(String fileName) throws IOException
-    {
-        Repository repo;
+    public static byte[] readCharsFromFile(String filePath, int seek, int chars) throws IOException {
+		RandomAccessFile file = new RandomAccessFile(filePath, "r");
+		file.seek(seek);
+		byte[] bytes = new byte[chars];
+		file.read(bytes);
+		file.close();
+		return bytes;
+	}
 
-        try {
-            File fn = new File(fileName);
-            if(fn.exists()) {
-                ObjectInputStream output = new ObjectInputStream(
-                  new FileInputStream(fileName)  
-                );
-                try {
-                    while (true) {
-                        repo = (Repository)output.readObject();
-                        System.out.println(repo);
-                    }
-                } catch (EOFException ee) {
-                    repo = null;
-                }
-                output.close();
-            }
-        } catch (Exception e) {
-           e.printStackTrace();
-        }
-    }
+    public static void writeData(String filePath, String data, int seek) throws IOException {
+		RandomAccessFile file = new RandomAccessFile(filePath, "rw");
+		file.seek(seek);
+		file.write(data.getBytes());
+		file.close();
+	}
 
-    public static void adding(String fileName, Repository addingRecord)
-    {
+    public static void appendData(String filePath, String data) throws IOException {
+		RandomAccessFile raFile = new RandomAccessFile(filePath, "rw");
+		raFile.seek(raFile.length());
+		System.out.println("current pointer = "+raFile.getFilePointer());
+		raFile.write(data.getBytes());
+		raFile.close();
+	}
 
-    }
-
-    public static void deleting(String fileName, Repository deletingRecord)
-    {
-
-    }
+    
 }

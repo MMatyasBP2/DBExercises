@@ -24,9 +24,13 @@ public class App {
                                 new Product(
                                     01,
                                     "Malna",
-                                    20))})};        
+                                    20))})}; 
+                                    
+        Repository.writeData(FILE, repos[0].toString(), 5);
+        System.out.println(new String(Repository.readCharsFromFile(FILE, 1, 10000)));
+        System.out.println("\nAppending:\n");
+        Repository.appendData(FILE, repos[1].toString());
+        System.out.println(new String(Repository.readCharsFromFile(FILE, 1, 10000)));
 
-        Repository.storing(repos);
-        Repository.reading(FILE);
     }
 }
