@@ -103,7 +103,24 @@ public class Repository implements Serializable {
 		raFile.close();
 	}
 
-    public static void deleteData() {
-        
+    public static void deleteData(String filePath, String data) throws IOException {
+        String record;
+
+        File tempDB = new File("rek.DAT");
+        File db = new File(filePath);
+
+        BufferedReader br = new BufferedReader( new FileReader( db ) );
+        BufferedWriter bw = new BufferedWriter( new FileWriter( tempDB ) );
+
+        while( ( record = br.readLine() ) != null ) {
+            bw.write(record);
+            bw.flush();
+            bw.newLine();
+        }
+
+        br.close();
+        bw.close();
+        db.delete();
+        tempDB.renameTo(db);
     }
 }

@@ -38,6 +38,6 @@ public class App {
         System.out.println(new String(Repository.readData(FILE, 1, 10000)));
 
         // Deleting the first Product from the binary file
-
+        Repository.deleteData(FILE, repos[0].getProducts()[0].toString());
     }
 }
