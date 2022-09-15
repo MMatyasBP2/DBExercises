@@ -27,14 +27,15 @@ public class App {
                                     20))})}; 
         
         // Writing the first Repository to the binary file
-        Repository.writeData(FILE, repos[0].toString(), 5);
+        Repository.writeData(FILE, repos[0].getProducts()[0].toString(), 5);
         
         // Reading the first Repository from the binary file
         System.out.println(new String(Repository.readData(FILE, 1, 10000)));
 
         // Appending the second Repository to the binary file
         System.out.println("\nAfter appending:\n");
-        Repository.appendData(FILE, "\n\n" + repos[1].toString());
+        Repository.appendData(FILE, "\n\n" + repos[0].getProducts()[1].toString());
+        Repository.appendData(FILE, "\n\n" + repos[1].getProducts()[0].toString());
 
         // Reading the second Repository from the binary file
         System.out.println(new String(Repository.readData(FILE, 1, 10000)));
