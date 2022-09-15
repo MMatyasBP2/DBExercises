@@ -89,9 +89,8 @@ public class Repository implements Serializable {
     public static void appendData(String filePath, String data) throws IOException {
 		RandomAccessFile raFile = new RandomAccessFile(filePath, "rw");
 		raFile.seek(raFile.length());
+        raFile.writeUTF("\n");
 		raFile.write(data.getBytes());
 		raFile.close();
 	}
-
-
 }
