@@ -89,7 +89,6 @@ public class Repository implements Serializable {
     public static void appendData(String filePath, String data) throws IOException {
 		RandomAccessFile raFile = new RandomAccessFile(filePath, "rw");
 		raFile.seek(raFile.length());
-		System.out.println("current pointer = "+raFile.getFilePointer());
 		raFile.write(data.getBytes());
 		raFile.close();
 	}
