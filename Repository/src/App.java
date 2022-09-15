@@ -29,7 +29,7 @@ public class App {
         Repository.writeData(FILE, repos[0].toString(), 5);
         System.out.println(new String(Repository.readCharsFromFile(FILE, 1, 10000)));
         System.out.println("\nAppending:\n");
-        Repository.appendData(FILE, repos[1].toString());
+        Repository.appendData(FILE, "\n\n" + repos[1].toString());
         System.out.println(new String(Repository.readCharsFromFile(FILE, 1, 10000)));
 
     }
