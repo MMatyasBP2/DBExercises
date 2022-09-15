@@ -70,7 +70,7 @@ public class Repository implements Serializable {
                 + ",\nProducts=" + Arrays.toString(products) + "]";
     }
 
-    public static byte[] readCharsFromFile(String filePath, int seek, int chars) throws IOException {
+    public static byte[] readData(String filePath, int seek, int chars) throws IOException {
 		RandomAccessFile file = new RandomAccessFile(filePath, "r");
 		file.seek(seek);
 		byte[] bytes = new byte[chars];
