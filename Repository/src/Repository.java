@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class Repository implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     private String building;
     private int line;
     private int column;
@@ -24,13 +23,11 @@ public class Repository implements Serializable {
             } else {
                 throw new ProductFullException();
             }
-        } catch (ProductFullException e) {
-            e.getMessage();
+        } catch (ProductFullException pfe) {
+            pfe.getMessage();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-    }
-
-    public static long getSerialversionuid() {
-        return serialVersionUID;
     }
 
     public String getBuilding() {
@@ -106,13 +103,16 @@ public class Repository implements Serializable {
     public static void deleteData(String filePath, String data) throws IOException {
         String record;
 
-        File tempDB = new File("rek.DAT");
+        File tempDB = new File("rekord.DAT");
         File db = new File(filePath);
 
         BufferedReader br = new BufferedReader( new FileReader( db ) );
         BufferedWriter bw = new BufferedWriter( new FileWriter( tempDB ) );
 
         while( ( record = br.readLine() ) != null ) {
+            if( record.contains(data) ) 
+                continue;
+
             bw.write(record);
             bw.flush();
             bw.newLine();
